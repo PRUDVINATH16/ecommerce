@@ -1,7 +1,16 @@
 import './Header.css';
 import { Link, NavLink } from 'react-router';
+import { useState } from 'react';
 
-export function Header({ cart }) {
+export function Header({ cart, onSearch }) {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleChange = (event) => {
+    const term = event.target.value;
+    setSearchTerm(term);
+    onSearch(term);
+  };
+
   return (
     <div className="header">
       <div className="left-section">
@@ -14,7 +23,13 @@ export function Header({ cart }) {
       </div>
 
       <div className="middle-section">
-        <input className="search-bar" type="text" placeholder="Search" />
+        <input
+          className="search-bar"
+          type="text"
+          placeholder="Search"
+          value={searchTerm}
+          onChange={handleChange}
+        />
 
         <button className="search-button">
           <img className="search-icon" src="images/icons/search-icon.png" />
