@@ -51,7 +51,7 @@ export function Product({product, loadCart }) {
 
       <div className="product-spacer"></div>
 
-      <div className="added-to-cart">
+      <div className={`added-to-cart-${product.id} added-to-cart`}>
         <img src="images/icons/checkmark.png" />
         Added
       </div>
@@ -62,6 +62,10 @@ export function Product({product, loadCart }) {
             productId: product.id,
             quantity
           })
+          document.querySelector(`.added-to-cart-${product.id}`).style.opacity = 1;
+          setTimeout(() => {
+            document.querySelector(`.added-to-cart-${product.id}`).style.opacity = 0;
+          }, 1000);
           await loadCart();
         }}>
         Add to Cart

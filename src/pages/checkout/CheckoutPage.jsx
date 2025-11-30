@@ -40,7 +40,7 @@ export function CheckoutPage({ cart, loadCart }) {
 
           <div className="checkout-header-middle-section">
             Checkout (<Link className="return-to-home-link"
-              to="/">3 items</Link>)
+              to="/">{cart.length} items</Link>)
           </div>
 
           <div className="checkout-header-right-section">

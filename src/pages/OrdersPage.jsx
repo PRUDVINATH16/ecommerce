@@ -6,7 +6,9 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { formatMoney } from '../utils/money.js';
 
-export function OrdersPage({ cart }) {
+export function OrdersPage({ cart, loadCart }) {
+
+  window.axios = axios; // For debugging purposes
 
   const [orders, setOrders] = useState([]);
   useEffect(() => {
@@ -70,7 +72,13 @@ export function OrdersPage({ cart }) {
                               </div>
                               <button className="buy-again-button button-primary">
                                 <img className="buy-again-icon" src="images/icons/buy-again.png" />
-                                <span className="buy-again-message">Add to Cart</span>
+                                <span className="buy-again-message" onClick={async () => {
+                                  await axios.post('/api/cart-items', {
+                                    productId: products.product.id,
+                                    quantity: 1
+                                  })
+                                  await loadCart();
+                                }}>Add to Cart</span>
                               </button>
                             </div>
 

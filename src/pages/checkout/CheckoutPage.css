@@ -231,6 +231,11 @@
   margin-left: 3px;
 }
 
+.checkout-page .quantity-label {
+  width: 40px;
+  text-align: center;
+}
+
 @media (max-width: 1000px) {
   .checkout-page .delivery-options {
     /* grid-column: 1 means this element will be placed
